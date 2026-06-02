@@ -1,29 +1,52 @@
 package chesslayer;
 
-public class ChessMatch {
+import boardlayer.Board;
 
+public class ChessMatch {
     private int turn;
     private Color currentPlayer;
     private boolean check;
     private boolean checkMate;
     private ChessPiece enPassantVulnerable;
     private ChessPiece promoted;
+    private Board board;
 
+    public ChessMatch() {
+        board = new Board(8, 8);
+        turn = 1;
+        currentPlayer = Color.WHITE;
+    }
     public int getTurn() {
         return turn;
     }
 
-    public boolean[][] possibleMoves(ChessPosition sourcePosition) {
-
+    public Color getCurrentPlayer() {
+        return currentPlayer;
     }
 
-    public ChessPiece performChessMove(
-            ChessPosition sourcePosition,
-            ChessPosition targetPosition) {
-
+    public boolean getCheck() {
+        return check;
     }
 
-    public ChessPiece replacePromotedPiece(String type) {
+    public boolean getCheckMate() {
+        return checkMate;
+    }
 
+    public ChessPiece getEnPassantVulnerable() {
+        return enPassantVulnerable;
+    }
+
+    public ChessPiece getPromoted() {
+        return promoted;
+    }
+
+    public ChessPiece[][] getPieces() {
+        ChessPiece[][] aux = new ChessPiece[board.getRows()][board.getColumns()];
+        for (int i = 0; i < board.getRows(); i++) {
+            for (int j = 0; j < board.getColumns(); j++) {
+                aux[i][j] = (ChessPiece) board.piece(i, j);
+            }
+        }
+        return aux;
     }
 }
