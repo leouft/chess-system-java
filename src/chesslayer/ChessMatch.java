@@ -3,6 +3,7 @@ package chesslayer;
 import boardlayer.Board;
 import boardlayer.Position;
 import chesslayer.pieces.King;
+import chesslayer.pieces.Pawn;
 import chesslayer.pieces.Rook;
 
 import java.util.ArrayList;
@@ -76,6 +77,9 @@ public class ChessMatch {
         newPieceOnBoard(7, 3, new Queen(board, Color.WHITE)); // Rainha 1
         */
         newPieceOnBoard(7, 4, new King(board, Color.WHITE, this)); // Rei 1
+        for(int i = 0; i < 8; i++) {
+            newPieceOnBoard(6, i, new Pawn(board, Color.WHITE, this));
+        }
 
     }
 
