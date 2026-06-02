@@ -1,6 +1,9 @@
 package chesslayer;
 
 import boardlayer.Board;
+import boardlayer.Piece;
+import boardlayer.Position;
+import chesslayer.pieces.Rook;
 
 public class ChessMatch {
     private int turn;
@@ -49,4 +52,10 @@ public class ChessMatch {
         }
         return aux;
     }
+
+    public void initialSetup(){
+        board.placePiece(new Rook(board, Color.WHITE));
+
+    }
+
 }
