@@ -20,20 +20,30 @@ public class Board {
         return  columns;
     }
 
-    public Piece piece(int row, int columns) {
+    public Piece piece(int row, int column) {
+        Position pos = new Position(row, column);
+        if (!positionExists(pos))
+            throw new BoardException("Invalid position.");
         return pieces[row][columns];
     }
 
     public Piece piece(Position position) {
+        if (!positionExists(position))
+            throw new BoardException("Invalid position.");
         return pieces[position.getRow()][position.getColumn()];
     }
 
     public void placePiece(Piece piece, Position position) {
+        if (thereIsAPiece(position)) {
+            throw new BoardException("There's a piece on position " + position);
+        }
         pieces[position.getRow()][position.getColumn()] = piece;
         piece.position = position;
     }
 
     public Piece removePiece(Position position) {
+        if (!positionExists(position))
+            throw new BoardException("Invalid position");
         if (piece(position) == null)
             return null;
         Piece aux = piece(position);
@@ -48,7 +58,7 @@ public class Board {
 
     public boolean thereIsAPiece(Position position) {
         if (!positionExists(position)) {
-            return false;
+            throw new BoardException("Invalid position");
         }
         return piece(position) != null;
     }
