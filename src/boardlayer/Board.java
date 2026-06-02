@@ -34,9 +34,8 @@ public class Board {
     }
 
     public Piece removePiece(Position position) {
-        if (pieces[position.getRow()][position.getRow()] == null) {
+        if (piece(position) == null)
             return null;
-        }
         Piece aux = piece(position);
         aux.position = null;
         pieces[position.getRow()][position.getRow()] = null;
