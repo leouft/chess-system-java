@@ -2,6 +2,7 @@ package chesslayer;
 
 import boardlayer.Board;
 import boardlayer.Position;
+import chesslayer.pieces.King;
 import chesslayer.pieces.Rook;
 
 import java.util.ArrayList;
@@ -67,6 +68,15 @@ public class ChessMatch {
         // Brancas
         newPieceOnBoard(7, 0, new Rook(board, Color.WHITE)); // Torre 1
         newPieceOnBoard(7, 7, new Rook(board, Color.WHITE)); // Torre 2
+        /*
+        newPieceOnBoard(7, 1, new Knight(board, Color.WHITE)); // Cavalo 1
+        newPieceOnBoard(7, 6, new Knight(board, Color.WHITE)); // Cavalo 2
+        newPieceOnBoard(7, 2, new Bishop(board, Color.WHITE)); // Bispo 1
+        newPieceOnBoard(7, 5, new Bishop(board, Color.WHITE)); // Bispo 2
+        newPieceOnBoard(7, 3, new Queen(board, Color.WHITE)); // Rainha 1
+        */
+        newPieceOnBoard(7, 4, new King(board, Color.WHITE)); // Rei 2
+
     }
 
 }
