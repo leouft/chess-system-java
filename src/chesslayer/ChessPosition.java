@@ -28,4 +28,9 @@ public class ChessPosition {
     protected static ChessPosition fromPosition(Position position) { // Converte posições 0,0; 0,1; 1;0... para a1, a2, b1...
         return new ChessPosition((char)('a' + position.getColumn()), 8 - position.getRow());
     }
+
+    @Override
+    public String toString() {
+        return ""+column+row;
+    }
 }
