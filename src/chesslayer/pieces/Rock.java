@@ -1,6 +1,9 @@
 package chesslayer.pieces;
 
+import boardlayer.Board;
+import boardlayer.Position;
 import chesslayer.ChessPiece;
+import chesslayer.Color;
 
 public class Rock extends ChessPiece {
 
@@ -10,43 +13,53 @@ public class Rock extends ChessPiece {
 
     @Override
     public boolean[][] possibleMoves() {
-        boolean[][] aux = new boolean[getBoard().getRows()][getBoard().getColuns()];
+        boolean[][] aux = new boolean[getBoard().getRows()][getBoard().getColumns()];
 
         Position pos = new Position(0, 0);
 
-        //movimentos da torre
-        //cima
-        pos.setValue(position.getRow() - 1, position.getColuns()){
-            while(getBoard().positionExist(pos) && !getBoard().thereIsAPiece(pos)){
-                aux[pos.getRow()][pos.getColumn()] = true;
-                pos.setRow(pos.getRow() - 1);
-            }
-        }
+        // Movimentos
 
-        //baixo
-        pos.setValue(position.getRow() + 1, position.getColuns()){
-            while(getBoard().positionExist(pos) && !getBoard().thereIsAPiece(pos)){
-                aux[pos.getRow()][pos.getColumn()] = true;
-                pos.setRow(pos.getRow() + 1);
-            }
+        // Cima
+        pos.setValues(position.getRow() - 1, position.getColumn());
+        while(getBoard().positionExists(pos) && !getBoard().thereIsAPiece(pos)){
+            aux[pos.getRow()][pos.getColumn()] = true;
+            pos.setRow(pos.getRow() - 1);
         }
+        if (getBoard().positionExists(pos) && isThereOpponentPiece(pos)) // Captura
+            aux[pos.getRow()][pos.getColumn()] = true;
 
-        //direita
-        pos.setValue(position.getRow(), position.getColuns() + 1){
-            while(getBoard().positionExist(pos) && !getBoard().thereIsAPiece(pos)){
-                aux[pos.getRow()][pos.getColumn()] = true;
-                pos.setRow(pos.getColuns() + 1);
-            }
+        // Baixo
+        pos.setValues(position.getRow() + 1, position.getColumn());
+        while(getBoard().positionExists(pos) && !getBoard().thereIsAPiece(pos)){
+            aux[pos.getRow()][pos.getColumn()] = true;
+            pos.setRow(pos.getRow() + 1);
         }
+        if (getBoard().positionExists(pos) && isThereOpponentPiece(pos)) // Captura
+            aux[pos.getRow()][pos.getColumn()] = true;
 
-        //esquerda
-        pos.setValue(position.getRow(), position.getColuns() - 1){
-            while(getBoard().positionExist(pos) && !getBoard().thereIsAPiece(pos)){
-                aux[pos.getRow()][pos.getColumn()] = true;
-                pos.setRow(pos.getColuns() - 1);
-            }
+        // Direita
+        pos.setValues(position.getRow(), position.getColumn() + 1);
+        while(getBoard().positionExists(pos) && !getBoard().thereIsAPiece(pos)){
+            aux[pos.getRow()][pos.getColumn()] = true;
+            pos.setRow(pos.getColumn() + 1);
         }
+        if (getBoard().positionExists(pos) && isThereOpponentPiece(pos)) // Captura
+            aux[pos.getRow()][pos.getColumn()] = true;
 
+        // Esquerda
+        pos.setValues(position.getRow(), position.getColumn() - 1);
+        while(getBoard().positionExists(pos) && !getBoard().thereIsAPiece(pos)){
+            aux[pos.getRow()][pos.getColumn()] = true;
+            pos.setRow(pos.getColumn() - 1);
+        }
+        if (getBoard().positionExists(pos) && isThereOpponentPiece(pos)) // Captura
+            aux[pos.getRow()][pos.getColumn()] = true;
+
+        return aux;
     }
 
+    @Override
+    public String toString(){
+        return "R";
+    }
 }
