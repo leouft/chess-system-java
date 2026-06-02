@@ -105,4 +105,9 @@ public class King extends ChessPiece {
         }
         return aux;
     }
+
+    @Override
+    public String toString() {
+        return "K";
+    }
 }
