@@ -9,6 +9,10 @@ public abstract class Piece {
         position = null;
     }
 
+    public Board getBoard() {
+        return board;
+    }
+
     public abstract boolean[][] possibleMoves();
 
     public boolean possibleMove(Position position) {
