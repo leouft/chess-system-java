@@ -5,9 +5,9 @@ import boardlayer.Position;
 import chesslayer.ChessPiece;
 import chesslayer.Color;
 
-public class Rock extends ChessPiece {
+public class Rook extends ChessPiece {
 
-    public Rock(Board board, Color color){
+    public Rook(Board board, Color color){
         super(board, color);
     }
 
