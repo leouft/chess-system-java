@@ -75,7 +75,7 @@ public class ChessMatch {
         newPieceOnBoard(7, 5, new Bishop(board, Color.WHITE)); // Bispo 2
         newPieceOnBoard(7, 3, new Queen(board, Color.WHITE)); // Rainha 1
         */
-        newPieceOnBoard(7, 4, new King(board, Color.WHITE)); // Rei 2
+        newPieceOnBoard(7, 4, new King(board, Color.WHITE, this)); // Rei 1
 
     }
 
