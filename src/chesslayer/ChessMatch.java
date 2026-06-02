@@ -67,6 +67,7 @@ public class ChessMatch {
 
     public void initialSetup(){
         // Brancas
+        newPieceOnBoard(7, 4, new King(board, Color.WHITE, this)); // Rei
         newPieceOnBoard(7, 0, new Rook(board, Color.WHITE)); // Torre 1
         newPieceOnBoard(7, 7, new Rook(board, Color.WHITE)); // Torre 2
         /*
@@ -76,9 +77,16 @@ public class ChessMatch {
         newPieceOnBoard(7, 5, new Bishop(board, Color.WHITE)); // Bispo 2
         newPieceOnBoard(7, 3, new Queen(board, Color.WHITE)); // Rainha 1
         */
-        newPieceOnBoard(7, 4, new King(board, Color.WHITE, this)); // Rei 1
         for(int i = 0; i < 8; i++) {
             newPieceOnBoard(6, i, new Pawn(board, Color.WHITE, this));
+        }
+
+        // Pretas
+        newPieceOnBoard(0, 4, new King(board, Color.BLACK, this)); // Rei
+        newPieceOnBoard(0, 0, new Rook(board, Color.BLACK)); // Torre 1
+        newPieceOnBoard(0, 7, new Rook(board, Color.BLACK)); // Torre 2
+        for(int i = 0; i < 8; i++) {
+            newPieceOnBoard(1, i, new Pawn(board, Color.BLACK, this));
         }
 
     }
