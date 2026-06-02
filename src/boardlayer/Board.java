@@ -25,7 +25,7 @@ public class Board {
         Position pos = new Position(row, column);
         if (!positionExists(pos))
             throw new BoardException("Invalid position.");
-        return pieces[row][columns];
+        return pieces[row][column];
     }
 
     public Piece piece(Position position) {
