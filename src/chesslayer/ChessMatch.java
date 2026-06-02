@@ -1,9 +1,11 @@
 package chesslayer;
 
 import boardlayer.Board;
-import boardlayer.Piece;
 import boardlayer.Position;
 import chesslayer.pieces.Rook;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class ChessMatch {
     private int turn;
@@ -13,6 +15,8 @@ public class ChessMatch {
     private ChessPiece enPassantVulnerable;
     private ChessPiece promoted;
     private Board board;
+
+    private List<ChessPiece> piecesOnBoard = new ArrayList<>();
 
     public ChessMatch() {
         board = new Board(8, 8);
@@ -53,9 +57,16 @@ public class ChessMatch {
         return aux;
     }
 
-    public void initialSetup(){
-        board.placePiece(new Rook(board, Color.WHITE));
+    public void newPieceOnBoard(int row, int column, ChessPiece piece) {
+        Position pos = new Position(row, column);
+        board.placePiece(piece, pos);
+        piecesOnBoard.add(piece);
+    }
 
+    public void initialSetup(){
+        // Brancas
+        newPieceOnBoard(7, 0, new Rook(board, Color.WHITE)); // Torre 1
+        newPieceOnBoard(7, 7, new Rook(board, Color.WHITE)); // Torre 2
     }
 
 }
