@@ -8,7 +8,7 @@ public class ChessPosition {
 
     public ChessPosition(char column, int row) {
         if (column < 'a' || column > 'h' || row < 1 || row > 8)
-            throw new ChessException("Invalid ChessPosition. Valid range: a1 to h8.");
+            throw new ChessException("Invalid ChessPosition. Valid range: a1 to h8 [PRESS ENTER TO CONTINUE].");
         this.column = column;
         this.row = row;
     }
