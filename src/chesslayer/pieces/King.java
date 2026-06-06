@@ -15,12 +15,12 @@ public class King extends ChessPiece {
     }
 
     private boolean moveAlowed(Position position) {
-        ChessPiece piece = (ChessPiece)getBoard().piece(position);
+        ChessPiece piece = (ChessPiece) getBoard().piece(position);
         return (piece == null || piece.getColor() != getColor()); // Se não tiver peça, ou se for uma peça rival, ele pode se mexer
     }
 
     private boolean testCastlingForRook(Position position) {
-        ChessPiece temp = (ChessPiece)getBoard().piece(position);
+        ChessPiece temp = (ChessPiece) getBoard().piece(position);
         return (temp instanceof Rook && temp.getMoveCount() == 0 && temp.getColor() == getColor()); // Verifica se é ua torre, não se mexeu e é da mesma cor
     }
 
@@ -70,39 +70,26 @@ public class King extends ChessPiece {
         if (getBoard().positionExists(pos) && moveAlowed(pos))
             aux[pos.getRow()][pos.getColumn()] = true;
 
-        // Roque
-        if (getMoveCount() == 0) {
-            // Roque pra esquerda
-            boolean wayBlocked = false;
-            for (int i = 3; i > 0; i--) {
-                pos.setValues(7, i);
-                if (getBoard().thereIsAPiece(pos)) {
-                    wayBlocked = true;
-                    break;
-                }
-            }
-            if (!wayBlocked) {
-                pos.setValues(7, 0);
-                if (testCastlingForRook(pos))
-                    aux[pos.getRow()][pos.getColumn()-2] = true;
-            }
-
+        if (getMoveCount() == 0 && !chessMatch.getCheck()) {
             // Roque pra direita
-            wayBlocked = false;
-            for (int i = 5; i < 7; i++) {
-                pos.setValues(7, i);
-                if (getBoard().thereIsAPiece(pos)) {
-                    wayBlocked = true;
-                    break;
-                }
+            Position posRook = new Position(position.getRow(), position.getColumn() + 3);
+            if (testCastlingForRook(posRook)) {
+                Position pos1 = new Position(position.getRow(), position.getColumn() + 1);
+                Position pos2 = new Position(position.getRow(), position.getColumn() + 2);
+                if (getBoard().piece(pos1) == null && getBoard().piece(pos2) == null)
+                    aux[position.getRow()][position.getColumn() + 2] = true;
             }
 
-            if (!wayBlocked) {
-                pos.setValues(7,7);
-                if (testCastlingForRook(pos))
-                    aux[pos.getRow()][pos.getColumn() + 2] = true;
+            Position posRook2 = new Position(position.getRow(), position.getColumn() - 4);
+            if (testCastlingForRook(posRook2)) {
+                Position pos1 = new Position(position.getRow(), position.getColumn() - 1);
+                Position pos2 = new Position(position.getRow(), position.getColumn() - 2);
+                Position pos3 = new Position(position.getRow(), position.getColumn() - 3);
+                if (getBoard().piece(pos1) == null && getBoard().piece(pos2) == null && getBoard().piece(pos3) == null)
+                    aux[position.getRow()][position.getColumn() - 2] = true;
             }
         }
+
         return aux;
     }
 
