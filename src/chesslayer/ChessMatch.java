@@ -25,6 +25,7 @@ public class ChessMatch {
         board = new Board(8, 8);
         turn = 1;
         currentPlayer = Color.WHITE;
+        initialSetup();
     }
     public int getTurn() {
         return turn;
@@ -284,13 +285,11 @@ public class ChessMatch {
         newPieceOnBoard('e', 1, new King(board, Color.WHITE, this)); // Rei
         newPieceOnBoard('a', 1, new Rook(board, Color.WHITE)); // Torre 1
         newPieceOnBoard('h', 1, new Rook(board, Color.WHITE)); // Torre 2
-        /*
-        newPieceOnBoard(7, 1, new Knight(board, Color.WHITE)); // Cavalo 1
-        newPieceOnBoard(7, 6, new Knight(board, Color.WHITE)); // Cavalo 2
-        newPieceOnBoard(7, 2, new Bishop(board, Color.WHITE)); // Bispo 1
-        newPieceOnBoard(7, 5, new Bishop(board, Color.WHITE)); // Bispo 2
-        newPieceOnBoard(7, 3, new Queen(board, Color.WHITE)); // Rainha 1
-        */
+        newPieceOnBoard('b', 1, new Knight(board, Color.WHITE)); // Cavalo 1
+        newPieceOnBoard('g', 1, new Knight(board, Color.WHITE)); // Cavalo 2
+        newPieceOnBoard('c', 1, new Bishop(board, Color.WHITE)); // Bispo 1
+        newPieceOnBoard('f', 1, new Bishop(board, Color.WHITE)); // Bispo 2
+        newPieceOnBoard('d', 1, new Queen(board, Color.WHITE)); // Rainha 1
         newPieceOnBoard('a', 2, new Pawn(board, Color.WHITE, this));
         newPieceOnBoard('b', 2, new Pawn(board, Color.WHITE, this));
         newPieceOnBoard('c', 2, new Pawn(board, Color.WHITE, this));
@@ -304,6 +303,11 @@ public class ChessMatch {
         newPieceOnBoard('e', 8, new King(board, Color.BLACK, this)); // Rei
         newPieceOnBoard('a', 8, new Rook(board, Color.BLACK)); // Torre 1
         newPieceOnBoard('h', 8, new Rook(board, Color.BLACK)); // Torre 2
+        newPieceOnBoard('b', 8, new Knight(board, Color.BLACK)); // Cavalo 1
+        newPieceOnBoard('g', 8, new Knight(board, Color.BLACK)); // Cavalo 2
+        newPieceOnBoard('c', 8, new Bishop(board, Color.BLACK)); // Bispo 1
+        newPieceOnBoard('f', 8, new Bishop(board, Color.BLACK)); // Bispo 2
+        newPieceOnBoard('d', 8, new Queen(board, Color.BLACK)); // Rainha 1
         newPieceOnBoard('a', 7, new Pawn(board, Color.BLACK, this));
         newPieceOnBoard('b', 7, new Pawn(board, Color.BLACK, this));
         newPieceOnBoard('c', 7, new Pawn(board, Color.BLACK, this));
