@@ -1,11 +1,14 @@
 package application;
 
+import chesslayer.ChessMatch;
 import chesslayer.ChessPiece;
 import chesslayer.ChessPosition;
 import chesslayer.Color;
 
 import java.util.InputMismatchException;
+import java.util.List;
 import java.util.Scanner;
+import java.util.stream.Collectors;
 
 public class UI {
     public static final String RESET = "\u001B[0m";
@@ -26,7 +29,9 @@ public class UI {
         }
     }
 
-    public static void printPiece(ChessPiece piece) {
+    public static void printPiece(ChessPiece piece, boolean background) {
+        if (background)
+            System.out.print(BLUE_BACKGROUND);
         if (piece == null) {
             System.out.print("-" + RESET);
         }
@@ -43,12 +48,61 @@ public class UI {
         for (int i = 0; i < pieces.length; i++) {
             System.out.print((8-i) + " ");
             for (int j = 0; j < pieces.length; j++) {
-                printPiece(pieces[i][j]);
+                printPiece(pieces[i][j], false);
             }
             System.out.println();
         }
         System.out.println("  a b c d e f g h");
     }
 
+    public static void printBoard(ChessPiece[][] pieces, boolean[][] possibleMoves) {
+        for (int i = 0; i < pieces.length; i++) {
+            System.out.print((8-i) + " ");
+            for (int j = 0; j < pieces.length; j++) {
+                printPiece(pieces[i][j], possibleMoves[i][j]);
+            }
+            System.out.println();
+        }
+        System.out.println("  a b c d e f g h");
+    }
 
+    public static void clearScreen() {
+        System.out.print("\033[H\033[2J");
+        System.out.flush();
+    }
+
+    public static void printMatch(ChessMatch match, List<ChessPiece> capturedPieces){
+        printBoard(match.getPieces());
+        System.out.println();
+        printCapturedPieces(capturedPieces);
+        System.out.println();
+        System.out.println(String.format("Turn: %d", match.getTurn()));
+        if (!match.getCheckMate()) {
+            System.out.printf("Player round: %s\n", match.getCurrentPlayer());
+            if (match.getCheck())
+                System.out.println("Check.");
+        }
+        else {
+            System.out.println("Checkmate.");
+            System.out.println("Winner: " + match.getCurrentPlayer());
+        }
+    }
+
+    private static void printCapturedPieces(List<ChessPiece> capturedPieces) {
+        List<ChessPiece> white = capturedPieces.stream().filter(x -> x.getColor() == Color.WHITE).collect(Collectors.toList()); // Lista com as brancas
+        List<ChessPiece> black = capturedPieces.stream().filter(x -> x.getColor() == Color.BLACK).collect(Collectors.toList()); // Lista com as pretas
+        System.out.println("Captured pieces:");
+        System.out.print("White: ");
+        System.out.print(WHITE);
+        for (ChessPiece piece : white) {
+            System.out.print(piece.toString() + " ");
+        }
+        System.out.println(RESET);
+        System.out.print("Black: ");
+        System.out.print(BLACK);
+        for (ChessPiece piece : black) {
+            System.out.print(piece.toString() + " ");
+        }
+        System.out.println(RESET);
+    }
 }
