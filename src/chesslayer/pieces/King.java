@@ -99,7 +99,7 @@ public class King extends ChessPiece {
                 Position pos1 = new Position(position.getRow(), position.getColumn() - 1);
                 Position pos2 = new Position(position.getRow(), position.getColumn() - 2);
                 Position pos3 = new Position(position.getRow(), position.getColumn() - 3);
-                if (getBoard().piece(pos1) == null && getBoard().piece(pos2) == null && getBoard().piece(pos3) == null && !underAttack(pos1, getColor()) && !underAttack(pos2, getColor()))
+                if (getBoard().piece(pos1) == null && getBoard().piece(pos2) == null && getBoard().piece(pos3) == null && !underAttack(pos1, getColor()) && !underAttack(pos2, getColor()) && !underAttack(pos3, getColor()))
                     aux[position.getRow()][position.getColumn() - 2] = true;
             }
         }
