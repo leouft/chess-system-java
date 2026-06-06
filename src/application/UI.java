@@ -13,6 +13,8 @@ import java.util.stream.Collectors;
 public class UI {
     public static final String RESET = "\u001B[0m";
     public static final String WHITE = "\u001B[37m";
+    public static final String YELLOW = "\u001B[33m";
+    public static final String GREEN = "\u001B[32m";
     public static final String BLACK = "\u001B[30m";
 
     public static final String BLUE_BACKGROUND = "\u001B[44m";
@@ -37,9 +39,9 @@ public class UI {
         }
         else {
             if (piece.getColor() == Color.WHITE)
-                System.out.print(WHITE + piece + RESET);
+                System.out.print(GREEN + piece + RESET);
             else
-                System.out.print(BLACK + piece + RESET);
+                System.out.print(YELLOW + piece + RESET);
         }
         System.out.print(" ");
     }
@@ -72,6 +74,8 @@ public class UI {
     }
 
     public static void printMatch(ChessMatch match, List<ChessPiece> capturedPieces){
+        System.out.println("Black pieces are " + YELLOW + "yellow." + RESET);
+        System.out.println("White pieces are " + GREEN + "green." + RESET);
         printBoard(match.getPieces());
         System.out.println();
         printCapturedPieces(capturedPieces);
@@ -93,13 +97,13 @@ public class UI {
         List<ChessPiece> black = capturedPieces.stream().filter(x -> x.getColor() == Color.BLACK).collect(Collectors.toList()); // Lista com as pretas
         System.out.println("Captured pieces:");
         System.out.print("White: ");
-        System.out.print(WHITE);
+        System.out.print(GREEN);
         for (ChessPiece piece : white) {
             System.out.print(piece.toString() + " ");
         }
         System.out.println(RESET);
         System.out.print("Black: ");
-        System.out.print(BLACK);
+        System.out.print(YELLOW);
         for (ChessPiece piece : black) {
             System.out.print(piece.toString() + " ");
         }
