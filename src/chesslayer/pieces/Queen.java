@@ -99,4 +99,9 @@ public class Queen extends ChessPiece {
 
         return aux;
     }
+
+    @Override
+    public String toString() {
+        return "Q";
+    }
 }
