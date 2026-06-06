@@ -55,7 +55,7 @@ public class Bishop extends ChessPiece {
             aux[pos.getRow()][pos.getColumn()] = true;
 
         // Baixo-Esquerda
-        pos.setValues(position.getRow(), position.getColumn() - 1);
+        pos.setValues(position.getRow() + 1, position.getColumn() - 1);
         while(getBoard().positionExists(pos) && !getBoard().thereIsAPiece(pos)){
             aux[pos.getRow()][pos.getColumn()] = true;
             pos.setRow(pos.getRow() + 1);
