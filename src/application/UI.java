@@ -27,7 +27,7 @@ public class UI {
             return new ChessPosition(column, row);
         }
         catch (RuntimeException exception) {
-            throw new InputMismatchException("Invalid position. Insert values from a1 to h8.");
+            throw new InputMismatchException("Invalid position. Insert values from a1 to h8 [PRESS ENTER TO CONTINUE].");
         }
     }
 

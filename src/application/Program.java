@@ -56,5 +56,7 @@ public class Program {
         }
         UI.clearScreen();
         UI.printMatch(match, capturedPieces);
+
+        sc.close();
     }
 }

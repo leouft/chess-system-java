@@ -77,7 +77,7 @@ public class ChessMatch {
 
         if (isCheck(currentPlayer)) { // Verifica se o movimento colocou o jogador em xeque
             unmakeMove(source, target, capturedPiece);
-            throw new ChessException("This move put yourself in check.");
+            throw new ChessException("This move put yourself in check [PRESS ENTER TO CONTINUE].");
         }
 
         ChessPiece pieceMoved = (ChessPiece)board.piece(target);
@@ -230,10 +230,7 @@ public class ChessMatch {
     }
 
     private Color opponent(Color color) {
-        if (color == Color.WHITE)
-            return Color.BLACK;
-        else
-            return Color.WHITE;
+        return color == Color.WHITE ? Color.BLACK : Color.WHITE;
     }
 
     private ChessPiece locateKing(Color color) {
