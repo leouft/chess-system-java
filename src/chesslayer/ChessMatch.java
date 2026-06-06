@@ -59,17 +59,16 @@ public class ChessMatch {
         return aux;
     }
 
-    public void newPieceOnBoard(int row, int column, ChessPiece piece) {
-        Position pos = new Position(row, column);
-        board.placePiece(piece, pos);
+    public void newPieceOnBoard(char column, int row, ChessPiece piece) {
+        board.placePiece(piece, new ChessPosition(column, row).toPosition());
         piecesOnBoard.add(piece);
     }
 
     public void initialSetup(){
         // Brancas
-        newPieceOnBoard(7, 4, new King(board, Color.WHITE, this)); // Rei
-        newPieceOnBoard(7, 0, new Rook(board, Color.WHITE)); // Torre 1
-        newPieceOnBoard(7, 7, new Rook(board, Color.WHITE)); // Torre 2
+        newPieceOnBoard('e', 1, new King(board, Color.WHITE, this)); // Rei
+        newPieceOnBoard('a', 1, new Rook(board, Color.WHITE)); // Torre 1
+        newPieceOnBoard('h', 1, new Rook(board, Color.WHITE)); // Torre 2
         /*
         newPieceOnBoard(7, 1, new Knight(board, Color.WHITE)); // Cavalo 1
         newPieceOnBoard(7, 6, new Knight(board, Color.WHITE)); // Cavalo 2
@@ -77,17 +76,27 @@ public class ChessMatch {
         newPieceOnBoard(7, 5, new Bishop(board, Color.WHITE)); // Bispo 2
         newPieceOnBoard(7, 3, new Queen(board, Color.WHITE)); // Rainha 1
         */
-        for(int i = 0; i < 8; i++) {
-            newPieceOnBoard(6, i, new Pawn(board, Color.WHITE, this));
-        }
+        newPieceOnBoard('a', 2, new Pawn(board, Color.WHITE, this));
+        newPieceOnBoard('b', 2, new Pawn(board, Color.WHITE, this));
+        newPieceOnBoard('c', 2, new Pawn(board, Color.WHITE, this));
+        newPieceOnBoard('d', 2, new Pawn(board, Color.WHITE, this));
+        newPieceOnBoard('e', 2, new Pawn(board, Color.WHITE, this));
+        newPieceOnBoard('f', 2, new Pawn(board, Color.WHITE, this));
+        newPieceOnBoard('g', 2, new Pawn(board, Color.WHITE, this));
+        newPieceOnBoard('h', 2, new Pawn(board, Color.WHITE, this));
 
         // Pretas
-        newPieceOnBoard(0, 4, new King(board, Color.BLACK, this)); // Rei
-        newPieceOnBoard(0, 0, new Rook(board, Color.BLACK)); // Torre 1
-        newPieceOnBoard(0, 7, new Rook(board, Color.BLACK)); // Torre 2
-        for(int i = 0; i < 8; i++) {
-            newPieceOnBoard(1, i, new Pawn(board, Color.BLACK, this));
-        }
+        newPieceOnBoard('e', 8, new King(board, Color.BLACK, this)); // Rei
+        newPieceOnBoard('a', 8, new Rook(board, Color.BLACK)); // Torre 1
+        newPieceOnBoard('h', 8, new Rook(board, Color.BLACK)); // Torre 2
+        newPieceOnBoard('a', 7, new Pawn(board, Color.BLACK, this));
+        newPieceOnBoard('b', 7, new Pawn(board, Color.BLACK, this));
+        newPieceOnBoard('c', 7, new Pawn(board, Color.BLACK, this));
+        newPieceOnBoard('d', 7, new Pawn(board, Color.BLACK, this));
+        newPieceOnBoard('e', 7, new Pawn(board, Color.BLACK, this));
+        newPieceOnBoard('f', 7, new Pawn(board, Color.BLACK, this));
+        newPieceOnBoard('g', 7, new Pawn(board, Color.BLACK, this));
+        newPieceOnBoard('h', 7, new Pawn(board, Color.BLACK, this));
 
     }
 
