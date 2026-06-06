@@ -46,11 +46,11 @@ public class Pawn extends ChessPiece {
             if (position.getRow() == 3) {
                 Position posLeft = new Position(position.getRow(), position.getColumn() - 1);
                 if (getBoard().positionExists(posLeft) && isThereOpponentPiece(posLeft) && getBoard().piece(posLeft) == chessMatch.getEnPassantVulnerable())
-                    aux[posLeft.getRow()][posLeft.getColumn()] = true;
+                    aux[posLeft.getRow() - 1][posLeft.getColumn()] = true;
 
                 Position posRight = new Position(position.getRow(), position.getColumn() + 1);
                 if (getBoard().positionExists(posRight) && isThereOpponentPiece(posRight) && getBoard().piece(posRight) == chessMatch.getEnPassantVulnerable())
-                    aux[posRight.getRow()][posRight.getColumn()] = true;
+                    aux[posRight.getRow() - 1][posRight.getColumn()] = true;
             }
         }
         else { // Pretas
@@ -78,11 +78,11 @@ public class Pawn extends ChessPiece {
             if (position.getRow() == 4) {
                 Position posLeft = new Position(position.getRow(), position.getColumn() - 1);
                 if (getBoard().positionExists(posLeft) && isThereOpponentPiece(posLeft) && getBoard().piece(posLeft) == chessMatch.getEnPassantVulnerable())
-                    aux[posLeft.getRow()][posLeft.getColumn()] = true;
+                    aux[posLeft.getRow() + 1][posLeft.getColumn()] = true;
 
                 Position posRight = new Position(position.getRow(), position.getColumn() + 1);
                 if (getBoard().positionExists(posRight) && isThereOpponentPiece(posRight) && getBoard().piece(posRight) == chessMatch.getEnPassantVulnerable())
-                    aux[posRight.getRow()][posRight.getColumn()] = true;
+                    aux[posRight.getRow() + 1][posRight.getColumn()] = true;
             }
         }
         return aux;
