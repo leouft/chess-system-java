@@ -41,7 +41,7 @@ public class Rook extends ChessPiece {
         pos.setValues(position.getRow(), position.getColumn() + 1);
         while(getBoard().positionExists(pos) && !getBoard().thereIsAPiece(pos)){
             aux[pos.getRow()][pos.getColumn()] = true;
-            pos.setRow(pos.getColumn() + 1);
+            pos.setColumn(pos.getColumn() + 1);
         }
         if (getBoard().positionExists(pos) && isThereOpponentPiece(pos)) // Captura
             aux[pos.getRow()][pos.getColumn()] = true;
@@ -50,7 +50,7 @@ public class Rook extends ChessPiece {
         pos.setValues(position.getRow(), position.getColumn() - 1);
         while(getBoard().positionExists(pos) && !getBoard().thereIsAPiece(pos)){
             aux[pos.getRow()][pos.getColumn()] = true;
-            pos.setRow(pos.getColumn() - 1);
+            pos.setColumn(pos.getColumn() - 1);
         }
         if (getBoard().positionExists(pos) && isThereOpponentPiece(pos)) // Captura
             aux[pos.getRow()][pos.getColumn()] = true;
