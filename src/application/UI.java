@@ -1,7 +1,11 @@
 package application;
 
 import chesslayer.ChessPiece;
+import chesslayer.ChessPosition;
 import chesslayer.Color;
+
+import java.util.InputMismatchException;
+import java.util.Scanner;
 
 public class UI {
     public static final String RESET = "\u001B[0m";
@@ -10,6 +14,17 @@ public class UI {
 
     public static final String BLUE_BACKGROUND = "\u001B[44m";
 
+    public static ChessPosition readChessPosition(Scanner sc) {
+        try {
+            String str = sc.nextLine();
+            char column = str.charAt(0);
+            int row = Integer.parseInt(str.substring(1));
+            return new ChessPosition(column, row);
+        }
+        catch (RuntimeException exception) {
+            throw new InputMismatchException("Invalid position. Insert values from a1 to h8.");
+        }
+    }
 
     public static void printPiece(ChessPiece piece) {
         if (piece == null) {
