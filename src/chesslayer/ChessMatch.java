@@ -27,6 +27,11 @@ public class ChessMatch {
         currentPlayer = Color.WHITE;
         initialSetup();
     }
+
+    public List<Piece> getPiecesOnBoard() {
+        return piecesOnBoard;
+    }
+
     public int getTurn() {
         return turn;
     }

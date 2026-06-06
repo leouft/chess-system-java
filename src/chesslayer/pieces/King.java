@@ -1,10 +1,14 @@
 package chesslayer.pieces;
 
 import boardlayer.Board;
+import boardlayer.Piece;
 import boardlayer.Position;
 import chesslayer.ChessMatch;
 import chesslayer.ChessPiece;
 import chesslayer.Color;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class King extends ChessPiece {
     private ChessMatch chessMatch;
@@ -22,6 +26,16 @@ public class King extends ChessPiece {
     private boolean testCastlingForRook(Position position) {
         ChessPiece temp = (ChessPiece) getBoard().piece(position);
         return (temp instanceof Rook && temp.getMoveCount() == 0 && temp.getColor() == getColor()); // Verifica se é ua torre, não se mexeu e é da mesma cor
+    }
+
+    private boolean underAttack(Position pos, Color color) {
+        List<Piece> enemiesPieces = chessMatch.getPiecesOnBoard().stream().filter(x -> ((ChessPiece)x).getColor() != (color)).collect(Collectors.toList()); // Filtra apenas as peças inimigas
+        for (Piece piece : enemiesPieces) {
+            boolean[][] aux = piece.possibleMoves();
+            if (aux[pos.getRow()][pos.getColumn()])
+                return true;
+        }
+        return false;
     }
 
     @Override
@@ -76,7 +90,7 @@ public class King extends ChessPiece {
             if (testCastlingForRook(posRook)) {
                 Position pos1 = new Position(position.getRow(), position.getColumn() + 1);
                 Position pos2 = new Position(position.getRow(), position.getColumn() + 2);
-                if (getBoard().piece(pos1) == null && getBoard().piece(pos2) == null)
+                if (getBoard().piece(pos1) == null && getBoard().piece(pos2) == null && !underAttack(pos1, getColor()) && !underAttack(pos2, getColor()))
                     aux[position.getRow()][position.getColumn() + 2] = true;
             }
 
@@ -85,7 +99,7 @@ public class King extends ChessPiece {
                 Position pos1 = new Position(position.getRow(), position.getColumn() - 1);
                 Position pos2 = new Position(position.getRow(), position.getColumn() - 2);
                 Position pos3 = new Position(position.getRow(), position.getColumn() - 3);
-                if (getBoard().piece(pos1) == null && getBoard().piece(pos2) == null && getBoard().piece(pos3) == null)
+                if (getBoard().piece(pos1) == null && getBoard().piece(pos2) == null && getBoard().piece(pos3) == null && !underAttack(pos1, getColor()) && !underAttack(pos2, getColor()))
                     aux[position.getRow()][position.getColumn() - 2] = true;
             }
         }
