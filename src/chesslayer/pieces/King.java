@@ -16,7 +16,7 @@ public class King extends ChessPiece {
 
     private boolean moveAlowed(Position position) {
         ChessPiece piece = (ChessPiece)getBoard().piece(position);
-        return piece == null || piece.getColor() != getColor(); // Se não tiver peça, ou se for uma peça rival, ele pode se mexer
+        return (piece == null || piece.getColor() != getColor()); // Se não tiver peça, ou se for uma peça rival, ele pode se mexer
     }
 
     private boolean testCastlingForRook(Position position) {
@@ -31,42 +31,42 @@ public class King extends ChessPiece {
         Position pos = new Position(0, 0);
 
         // Cima
-        pos.setValues(position.getRow() - 1, pos.getColumn());
+        pos.setValues(position.getRow() - 1, position.getColumn());
         if (getBoard().positionExists(pos) && moveAlowed(pos))
             aux[pos.getRow()][pos.getColumn()] = true;
 
         // Baixo
-        pos.setValues(position.getRow() + 1, pos.getColumn());
+        pos.setValues(position.getRow() + 1, position.getColumn());
         if (getBoard().positionExists(pos) && moveAlowed(pos))
             aux[pos.getRow()][pos.getColumn()] = true;
 
         // Esquerda
-        pos.setValues(position.getRow(), pos.getColumn() - 1);
+        pos.setValues(position.getRow(), position.getColumn() - 1);
         if (getBoard().positionExists(pos) && moveAlowed(pos))
             aux[pos.getRow()][pos.getColumn()] = true;
 
         // Direita
-        pos.setValues(position.getRow(), pos.getColumn() + 1);
+        pos.setValues(position.getRow(), position.getColumn() + 1);
         if (getBoard().positionExists(pos) && moveAlowed(pos))
             aux[pos.getRow()][pos.getColumn()] = true;
 
         // Diagonal sup esquerda
-        pos.setValues(position.getRow() - 1, pos.getColumn() - 1);
+        pos.setValues(position.getRow() - 1, position.getColumn() - 1);
         if (getBoard().positionExists(pos) && moveAlowed(pos))
             aux[pos.getRow()][pos.getColumn()] = true;
 
         // Diagonal sup direita
-        pos.setValues(position.getRow() - 1, pos.getColumn() + 1);
+        pos.setValues(position.getRow() - 1, position.getColumn() + 1);
         if (getBoard().positionExists(pos) && moveAlowed(pos))
             aux[pos.getRow()][pos.getColumn()] = true;
 
         // Diagonal inf esquerda
-        pos.setValues(position.getRow() + 1, pos.getColumn() - 1);
+        pos.setValues(position.getRow() + 1, position.getColumn() - 1);
         if (getBoard().positionExists(pos) && moveAlowed(pos))
             aux[pos.getRow()][pos.getColumn()] = true;
 
         // Diagonal inf direita
-        pos.setValues(position.getRow() + 1, pos.getColumn() + 1);
+        pos.setValues(position.getRow() + 1, position.getColumn() + 1);
         if (getBoard().positionExists(pos) && moveAlowed(pos))
             aux[pos.getRow()][pos.getColumn()] = true;
 

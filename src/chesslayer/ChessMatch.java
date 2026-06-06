@@ -166,7 +166,7 @@ public class ChessMatch {
 
         // En passant
         if (piece instanceof Pawn) {
-            if (source.getColumn() != target.getColumn() && capturedPieces == null) { // Verifica se o movimento foi na diagonal e não pegou peça nenhuma
+            if (source.getColumn() != target.getColumn() && capturedPiece == null) { // Verifica se o movimento foi na diagonal e não pegou peça nenhuma
                 Position positionPawn;
                 if (piece.getColor() == Color.WHITE)
                     positionPawn = new Position(target.getRow() + 1, target.getColumn());
@@ -237,8 +237,9 @@ public class ChessMatch {
     }
 
     private ChessPiece locateKing(Color color) {
-        for (Piece piece : piecesOnBoard) {
-            if (piece instanceof King && ((King) piece).getColor() == color)
+        List<Piece> pieces = piecesOnBoard.stream().filter(x -> ((ChessPiece)x).getColor() == color).collect(Collectors.toList());
+        for (Piece piece : pieces) {
+            if (piece instanceof King)
                 return (ChessPiece)piece;
         }
         throw new IllegalStateException(String.format("No %s king.", color));
