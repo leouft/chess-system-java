@@ -29,12 +29,26 @@ public class King extends ChessPiece {
     }
 
     private boolean underAttack(Position pos, Color color) {
-        List<Piece> enemiesPieces = chessMatch.getPiecesOnBoard().stream().filter(x -> ((ChessPiece)x).getColor() != (color)).collect(Collectors.toList()); // Filtra apenas as peças inimigas
+        List<Piece> enemiesPieces = chessMatch.getPiecesOnBoard().stream().filter(x -> ((ChessPiece)x).getColor() != color).collect(Collectors.toList());
         for (Piece piece : enemiesPieces) {
+            if (piece instanceof King enemyKing) { // Teste diferente para Rei
+                Position kingPos = enemyKing.position;
+
+                int rowDif = Math.abs(kingPos.getRow() - pos.getRow());
+                int colDif = Math.abs(kingPos.getColumn() - pos.getColumn());
+
+                if (rowDif <= 1 && colDif <= 1) {
+                    return true;
+                }
+
+                continue;
+            }
             boolean[][] aux = piece.possibleMoves();
-            if (aux[pos.getRow()][pos.getColumn()])
+            if (aux[pos.getRow()][pos.getColumn()]) {
                 return true;
+            }
         }
+
         return false;
     }
 
@@ -99,7 +113,7 @@ public class King extends ChessPiece {
                 Position pos1 = new Position(position.getRow(), position.getColumn() - 1);
                 Position pos2 = new Position(position.getRow(), position.getColumn() - 2);
                 Position pos3 = new Position(position.getRow(), position.getColumn() - 3);
-                if (getBoard().piece(pos1) == null && getBoard().piece(pos2) == null && getBoard().piece(pos3) == null && !underAttack(pos1, getColor()) && !underAttack(pos2, getColor()) && !underAttack(pos3, getColor()))
+                if (getBoard().piece(pos1) == null && getBoard().piece(pos2) == null && getBoard().piece(pos3) == null && !underAttack(pos1, getColor()) && !underAttack(pos2, getColor()))
                     aux[position.getRow()][position.getColumn() - 2] = true;
             }
         }
