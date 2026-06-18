@@ -29,7 +29,7 @@ public class ChessMatch {
     }
 
     public List<Piece> getPiecesOnBoard() {
-        return piecesOnBoard;
+        return new ArrayList<>(piecesOnBoard);
     }
 
     public int getTurn() {
