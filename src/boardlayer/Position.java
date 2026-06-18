@@ -32,6 +32,6 @@ public class Position {
 
     @Override
     public String toString() {
-        return String.format("%, %d", row, column);
+        return String.format("%d, %d", row, column);
     }
 }
