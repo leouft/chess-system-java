@@ -217,7 +217,7 @@ public class ChessMatch {
 
         // Desfazer en passant
         if (piece instanceof Pawn) {
-            if (source.getColumn() != target.getColumn() && capturedPieces == enPassantVulnerable) {
+            if (source.getColumn() != target.getColumn() && capturedPiece == enPassantVulnerable) {
                 ChessPiece pawn = (ChessPiece)board.removePiece(target);
                 Position positionPawn;
                 if (piece.getColor() == Color.WHITE)
